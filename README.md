@@ -1,4 +1,4 @@
-# Industrial Equipment Defect Detection
+# Industrial Defect Detection
 
 ## Overview
 This project implements a deep learning model to automatically detect defects in industrial equipment through image classification. The model classifies equipment images into 'defective' and 'non-defective' categories, with additional defect type labeling for defective cases.
