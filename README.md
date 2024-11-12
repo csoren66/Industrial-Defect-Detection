@@ -1,4 +1,3 @@
-# Industrial-Image-Detection
 # Industrial Equipment Defect Detection
 
 ## Overview
