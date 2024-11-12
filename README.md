@@ -12,17 +12,6 @@ industrial-defect-detection/
 ├── models/                   # Saved model checkpoints
 ├── notebooks/               
 │   ├── 01_data_exploration.ipynb
-│   ├── 02_model_training.ipynb
-│   └── 03_evaluation.ipynb
-├── src/
-│   ├── data/
-│   │   ├── preprocess.py    # Data preprocessing utilities
-│   │   └── loader.py        # Data loading functions
-│   ├── models/
-│   │   ├── model.py         # Model architecture
-│   │   └── train.py         # Training functions
-│   └── utils/
-│       └── metrics.py       # Evaluation metrics
 ├── requirements.txt
 └── README.md
 ```
