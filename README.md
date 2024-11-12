@@ -11,7 +11,7 @@ industrial-defect-detection/
 │   └── processed/            # Preprocessed images
 ├── models/                   # Saved model checkpoints
 ├── notebooks/               
-│   ├── 01_data_exploration.ipynb
+│   ├── Industrial_Image_Detection.ipynb
 ├── requirements.txt
 └── README.md
 ```
