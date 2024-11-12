@@ -1,0 +1,10 @@
+opencv-python
+pandas
+numpy
+seaborn
+matplotlib
+holoviews
+tensorflow
+scikit-learn
+shap
+json
