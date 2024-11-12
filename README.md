@@ -1,14 +1,14 @@
 # Industrial Defect Detection
 
 ## Overview
-This project implements a deep learning model to automatically detect defects in industrial equipment through image classification. The model classifies equipment images into 'defective' and 'non-defective' categories, with additional defect type labeling for defective cases.
+This project implements a deep learning model to automatically detect defects in industrial equipment through image classification. The model classifies equipment images into 'defective' and 'non-defective' categories.
 
 ## Project Structure
 ```
 industrial-defect-detection/
-├── data/
-│   ├── raw/                  # Original image dataset
-│   └── processed/            # Preprocessed images
+├── dataset/
+│   ├── casting_data/casting_data/train/                  # Training image dataset
+│   └── /casting_data/casting_data/test/                  # Testing image dataset
 ├── models/                   # Saved model checkpoints
 ├── notebooks/               
 │   ├── Industrial_Image_Detection.ipynb
@@ -17,14 +17,16 @@ industrial-defect-detection/
 ```
 
 ## Requirements
-- Python 3.8+
-- PyTorch 2.0+
-- torchvision
-- numpy
+- opencv-python
 - pandas
-- scikit-learn
+- numpy
+- seaborn
 - matplotlib
-- albumentations
+- holoviews
+- tensorflow
+- scikit-learn
+- shap
+- json
 
 Install dependencies:
 ```bash
@@ -33,70 +35,46 @@ pip install -r requirements.txt
 
 ## Dataset
 The dataset consists of industrial equipment images divided into:
-- Non-defective samples
-- Defective samples with labeled defect types:
-  - Surface cracks
-  - Corrosion
-  - Deformation
-  - Missing components
+- Defective
+- Non-defective
+
 
 ## Model Architecture
 The project uses a CNN-based architecture with:
-- ResNet50 backbone (pretrained on ImageNet)
-- Custom classification head
-- Focal Loss for handling class imbalance
-
-## Training
-1. Prepare your dataset:
-```bash
-python src/data/preprocess.py --input_dir data/raw --output_dir data/processed
 ```
-
-2. Train the model:
-```bash
-python src/models/train.py --data_dir data/processed --model_dir models
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)             (None, 150, 150, 16)      800       
+                                                                 
+ max_pooling2d (MaxPooling2  (None, 75, 75, 16)        0         
+ D)                                                              
+                                                                 
+ conv2d_1 (Conv2D)           (None, 75, 75, 32)        4640      
+                                                                 
+ max_pooling2d_1 (MaxPoolin  (None, 37, 37, 32)        0         
+ g2D)                                                            
+                                                                 
+ conv2d_2 (Conv2D)           (None, 37, 37, 64)        18496     
+                                                                 
+ max_pooling2d_2 (MaxPoolin  (None, 18, 18, 64)        0         
+ g2D)                                                            
+                                                                 
+ flatten (Flatten)           (None, 20736)             0         
+                                                                 
+ dense (Dense)               (None, 224)               4645088   
+                                                                 
+ dropout (Dropout)           (None, 224)               0         
+                                                                 
+ dense_1 (Dense)             (None, 1)                 225       
+                                                                 
+=================================================================
+Total params: 4669249 (17.81 MB)
+Trainable params: 4669249 (17.81 MB)
+Non-trainable params: 0 (0.00 Byte)
+_________________________________________________________________
 ```
-
-## Evaluation Metrics
-The model's performance is evaluated using:
-- Accuracy
-- Precision
-- Recall
-- F1-Score
-- Confusion Matrix
-- ROC-AUC Curve
-
-## Results
-Example performance metrics on the test set:
-```
-Accuracy: 0.94
-Precision: 0.92
-Recall: 0.95
-F1-Score: 0.93
-```
-
-## Usage
-For inference on new images:
-```python
-from src.models.model import DefectDetector
-
-# Load trained model
-model = DefectDetector.load_from_checkpoint('models/best_model.pth')
-
-# Predict
-prediction = model.predict('path/to/image.jpg')
-```
-
-## Development Timeline
-- Day 1: Data collection, preprocessing, and exploratory data analysis
-- Day 2: Model development, training, and initial evaluation
-- Day 3: Fine-tuning, comprehensive evaluation, and documentation
-
-## Future Improvements
-- Implement multi-label classification for simultaneous defect type detection
-- Add explainability features using Grad-CAM
-- Deploy model as a REST API
-- Add real-time processing capabilities
 
 ## Contributing
 1. Fork the repository
